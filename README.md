@@ -1,5 +1,6 @@
 # pcxtkbd
 PS/2 -> PC/XT Arduino based Keyboard adapter.
+Adapted to tiny 13a
 
 Stable version.
 
