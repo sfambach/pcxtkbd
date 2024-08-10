@@ -1,16 +1,35 @@
 #include <PS2KeyAdvanced.h>
 
-#define ps_clk 3  // PS CLOCK DATA
-#define ps_data 4 // PS DATA PIN
 
 uint16_t c;
 
+
 PS2KeyAdvanced keyboard;
 
-unsigned char translationTable [256];
+unsigned char translationTable [128];
 
+#ifdef ARDUINO_ATTINY13_DIY
+
+  #error sketch to big does not work with tiny 13
+  #define ps_clk PB2  // PS CLOCK DATA
+  #define ps_data PB1 // PS DATA PIN
+  #define xt_clk PB3 // XT CLOCK PIN
+  #define xt_data PB5 // XT DATA PIN
+
+#elif defined(ARDUINO_ATTINY85_DIY)
+  #define ps_clk PB4  // PS CLOCK DATA
+  #define ps_data PB3 // PS DATA PIN   
+  #define xt_clk PB1 // XT CLOCK PIN
+  #define xt_data PB0                                                                                                                                                                                                           // XT DATA PIN
+#else
+
+#define ps_clk 3  // PS CLOCK DATA
+#define ps_data 4 // PS DATA PIN
 #define xt_clk 2 // XT CLOCK PIN
 #define xt_data 5 // XT DATA PIN
+
+#endif
+
 
 void setupTable () {
   for (int i=0;i<256;i++) {
@@ -172,14 +191,18 @@ void loop()
   
   if( c > 0 )
     {
-#if defined(ARDUINO_ARCH_AVR)
+#ifdef ARDUINO_ATTINY13_DIY
+    // no output Serial.print( c, HEX );
+#elif defined(ARDUINO_ATTINY85_DIY)
+    // no output
+#elif defined(ARDUINO_ARCH_AVR)
     Serial.print( F( "Value " ) );
     Serial.print( c, HEX );
     Serial.print( F( " - Status Bits " ) );
     Serial.print( c >> 8, HEX );
     Serial.print( F( "  Code " ) );
 #elif defined(ARDUINO_ARCH_SAM)
-    Serial.print( "Value " );
+    Serial.print( F("Value ") );
     Serial.print( c, HEX );
     Serial.print( " - Status Bits " );
     Serial.print( c >> 8, HEX );
