@@ -1,6 +1,14 @@
+# Forked
+https://github.com/kesrut/pcxtkbd 
+See orginal text below.
+
+# SteFam Log
+*2024.08.10 Added support for ATTIny85, and tried ATTiny13a but to less memmory on that chip. 
+
+
 # pcxtkbd
 PS/2 -> PC/XT Arduino based Keyboard adapter.
-Adapted to tiny 13a
+
 
 Stable version.
 
