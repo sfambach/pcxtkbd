@@ -3,7 +3,7 @@ https://github.com/kesrut/pcxtkbd
 See orginal text below.
 
 # SteFam Log
-*2024.08.10 Added support for ATTIny85, and tried ATTiny13a but to less memmory on that chip. 
+* 2024.08.10 Added support for ATTIny85, and tried ATTiny13a but to less memmory on that chip. 
 
 
 # pcxtkbd
